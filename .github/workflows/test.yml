@@ -43,3 +43,6 @@ jobs:
       # Step 6: Run the tests using pytest
       - name: Run tests
         run: pytest testAutomationPytest.py
+      - name: Run tests
+        run: pytest
+
