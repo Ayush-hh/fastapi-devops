@@ -13,36 +13,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code from GitHub
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Python (use Python 3.10 or a specific version if needed)
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: "3.10"
 
-      # Step 3: Install dependencies (FastAPI, Uvicorn, pytest, requests)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install fastapi uvicorn pytest requests
 
-      # Step 4: Start FastAPI server (this runs the server in the background)
       - name: Start FastAPI server
         run: |
           nohup python apiserver.py &
         env:
           PYTHONUNBUFFERED: 1
 
-      # Step 5: Wait for the FastAPI server to start up (adjust the time if needed)
       - name: Wait for server to be ready
-        run: sleep 10  # This ensures that the server has time to start
+        run: sleep 5  # Wait to ensure the server is up
 
-      # Step 6: Run the tests using pytest
       - name: Run tests
         run: pytest testAutomationPytest.py
-      - name: Run tests
-        run: pytest
-
